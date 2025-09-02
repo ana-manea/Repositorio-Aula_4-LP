@@ -1,16 +1,30 @@
-soma = 0
-subt = 0
+from flask import Flask, render_template, request
 
-n1 = int(input("número 1: "))
-n2 = int(input("número 2: "))
+app = Flask(_name_)
 
-soma = n1 + n2
+@app.route('/')
+def index():
+  return render_template('calculator.html')
 
-print(f"\nSoma dos números {n1} + {n2} = {soma}")
+@app.route('/calcular', methods=['POST'])
+def calcular():
+  num1 = float(request.form['num1'])
+  num2 = float(request.form['num2'])
+  operacao = request.form['operacao']
 
-subt = n1 - n2
+  resultado = None
 
-print(f"\nSubtração dos números {n1} - {n2} = {subt}")
+  if operacao == 'soma':
+      resultado = num1 + num2
+  elif operacao == 'subtracao':
+      resultado = num1 - num2
+  elif operacao == 'multiplicacao':
+      resultado = num1 * num2
+  elif operacao == 'divisao':
+      if num2 != 0:
+          resultado = num1 / num2
 
-print(f"\nA raíz quadrada de {n1} é igual a {n1**1/2}")
-print(f"A raíz quadrada de {n2} é igual a {n2**1/2}")
+  return render_template('calculator.html', resultado=resultado, num1=num1, num2=num2, operacao=operacao)
+
+if _name_ == '_main_':
+  app.run()

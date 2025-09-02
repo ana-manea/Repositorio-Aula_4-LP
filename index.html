@@ -11,9 +11,25 @@
     <section>
         <link rel = "teste" href ="teste.py">
     </section>
-
     <section>
         <p>Alo</p>
+    </section>
+    <section>
+        <form action="/calcular" method="post">
+            <input type="number" name="num1" placeholder="Digite o primeiro número" required value="{{ num1 }}">
+            <input type="number" name="num2" placeholder="Digite o segundo número" required value="{{ num2 }}">
+            <select name="operacao" required>
+                <option value="soma" {% if operacao=='soma' %}selected{% endif %}>Soma</option>
+                <option value="subtracao" {% if operacao=='subtracao' %}selected{% endif %}>Subtração</option>
+                <option value="multiplicacao" {% if operacao=='multiplicacao' %}selected{% endif %}>Multiplicação</option>
+                <option value="divisao" {% if operacao=='divisao' %}selected{% endif %}>Divisão</option>
+            </select>
+            <button type="submit">Calcular</button>
+        </form>
+
+        {% if resultado is not none %}
+        <h2>Resultado: {{ resultado }}</h2>
+        {% endif %}
     </section>
 </body>
 </html>
