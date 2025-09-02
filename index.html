@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Calculadora</title>
 </head>
 <body>
     <h1>Calculadora</h1>
@@ -24,8 +24,14 @@
             <button type="submit">Calcular</button>
         </form>
 
-        {% if resultado is not none %}
-        <h2>Resultado: {{ resultado }}</h2>
+        {% if erro %}
+        <div class="erro">
+            <h2>Erro: {{ erro }}</h2>
+        </div>
+        {% elif resultado is not none %}
+        <div class="resultado">
+            <h2>Resultado: {{ resultado }}</h2>
+        </div>
         {% endif %}
     </section>
 </body>
