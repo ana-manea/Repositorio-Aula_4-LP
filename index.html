@@ -1,38 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>Calculadora</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Calculadora</h1>
-    <section>
-        <p>Alo</p>
-    </section>
-    <section>
-        <form action="/calcular" method="post">
-            <input type="number" name="num1" placeholder="Digite o primeiro número" required value="{{ num1 }}">
-            <input type="number" name="num2" placeholder="Digite o segundo número" required value="{{ num2 }}">
-            <select name="operacao" required>
-                <option value="soma" {% if operacao=='soma' %}selected{% endif %}>Soma</option>
-                <option value="subtracao" {% if operacao=='subtracao' %}selected{% endif %}>Subtração</option>
-                <option value="multiplicacao" {% if operacao=='multiplicacao' %}selected{% endif %}>Multiplicação</option>
-                <option value="divisao" {% if operacao=='divisao' %}selected{% endif %}>Divisão</option>
-            </select>
-            <button type="submit">Calcular</button>
-        </form>
-
-        {% if erro %}
-        <div class="erro">
-            <h2>Erro: {{ erro }}</h2>
+    <div class="calculator">
+        <img src="https://icodestart.com/logo-code-start.svg" alt="Code Start" class="logo" width="185px"/>
+        <div class="display" id="display"></div>
+        <div class="buttons">
+            <button class="button light-gray" onclick="clearDisplay()">C</button>
+            <button class="button light-gray" onclick="appendOperator('%')">%</button>
+            <button class="button light-gray" onclick="appendOperator('.')">.</button>
+            <button class="button orange" onclick="appendOperator('/')">/</button>
+            <button class="button dark-gray" onclick="appendNumber('7')">7</button>
+            <button class="button dark-gray" onclick="appendNumber('8')">8</button>
+            <button class="button dark-gray" onclick="appendNumber('9')">9</button>
+            <button class="button orange" onclick="appendOperator('*')">*</button>
+            <button class="button dark-gray" onclick="appendNumber('4')">4</button>
+            <button class="button dark-gray" onclick="appendNumber('5')">5</button>
+            <button class="button dark-gray" onclick="appendNumber('6')">6</button>
+            <button class="button orange" onclick="appendOperator('-')">-</button>
+            <button class="button dark-gray" onclick="appendNumber('1')">1</button>
+            <button class="button dark-gray" onclick="appendNumber('2')">2</button>
+            <button class="button dark-gray" onclick="appendNumber('3')">3</button>
+            <button class="button orange" onclick="appendOperator('+')">+</button>
+            <button class="button dark-gray wide" onclick="appendNumber('0')">0</button>
+            <button class="button orange" onclick="calculate()">=</button>
         </div>
-        {% elif resultado is not none %}
-        <div class="resultado">
-            <h2>Resultado: {{ resultado }}</h2>
-        </div>
-        {% endif %}
-    </section>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
